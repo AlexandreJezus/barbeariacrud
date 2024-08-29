@@ -1,15 +1,8 @@
+const model = require("../models/servico_models.js");
+
 const db = [];
-let nextID = 1;
-const model = (servico, id_servico = nextID++) => {
-  if (servico.nome != undefined && servico.nome != "") {
-    return {
-      id_servico,
-      nome: servico.nome,
-      hora_saida: servico.hora_saida,
-      hora_retorno: servico.hora_retorno,
-    };
-  }
-};
+
+const index = () => db;
 
 const store = (body) => {
   const novo = model(body);
@@ -19,8 +12,6 @@ const store = (body) => {
   }
   return 400;
 };
-
-const index = () => db;
 
 const show = (id_servico) => db.find((el) => el.id_servico == id_servico);
 

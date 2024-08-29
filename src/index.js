@@ -10,43 +10,43 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use(cep_endereco);
-app.post("/barbearia", (req, res) => {
-  console.log(req.body);
+// app.use(cep_endereco) // Midleware de uso global
+
+app.post("/barbearia", cep_endereco, (req, res) => {
   res.json(req.body);
 });
 
-//Gerenciamento de barbearia
+// //Gerenciamento de barbearia
 
-// app.post("/barbearia", (req, res) => {
-//   const barbearia = req.body;
-//   const code = barbearia_controller.store(barbearia);
-//   res.status(code).json();
-// });
+app.post("/barbearia", (req, res) => {
+  const barbearia = req.body;
+  const code = barbearia_controller.store(barbearia);
+  res.status(code).json();
+});
 
-// app.get("/barbearia", (req, res) => {
-//   const barbearia = barbearia_controller.index();
-//   res.json(barbearia);
-// });
+app.get("/barbearia", (req, res) => {
+  const barbearia = barbearia_controller.index();
+  res.json(barbearia);
+});
 
-// app.get("/barbearia/:id", (req, res) => {
-//   const barbearia = barbearia_controller.show(req.params.id);
-//   res.json(barbearia);
-// });
+app.get("/barbearia/:id", (req, res) => {
+  const barbearia = barbearia_controller.show(req.params.id);
+  res.json(barbearia);
+});
 
-// app.put("/barbearia/:id", (req, res) => {
-//   const barbearia = req.body;
-//   const code = barbearia_controller.update(req.params.id, barbearia);
-//   res.status(code).json();
-// });
+app.put("/barbearia/:id", (req, res) => {
+  const barbearia = req.body;
+  const code = barbearia_controller.update(req.params.id, barbearia);
+  res.status(code).json();
+});
 
-// app.delete("/barbearia/:id", (req, res) => {
-//   barbearia_controller.destroy(req.params.id);
-//   res.json();
-// });
-//Gerenciamento de barbearia
+app.delete("/barbearia/:id", (req, res) => {
+  barbearia_controller.destroy(req.params.id);
+  res.json();
+});
+// //Gerenciamento de barbearia
 
-//Gerenciamento de barbeiro
+// //Gerenciamento de barbeiro
 app.post("/barbeiro", (req, res) => {
   const barbeiro = req.body;
   const code = barbeiro_controller.store(barbeiro);
@@ -73,9 +73,9 @@ app.delete("/barbeiro/:id", (req, res) => {
   barbeiro_controller.destroy(req.params.id);
   res.json();
 });
-//Gerencimento de barbeiro
+// //Gerencimento de barbeiro
 
-//Gerencimento de cliente
+// //Gerencimento de cliente
 
 app.post("/cliente", (req, res) => {
   const cliente = req.body;
@@ -104,9 +104,9 @@ app.delete("/cliente/:id", (req, res) => {
   res.json();
 });
 
-//Gerencimento de cliente
+// //Gerencimento de cliente
 
-//Gerencimento de rede
+// //Gerencimento de rede
 
 app.post("/rede", (req, res) => {
   const rede = req.body;
@@ -135,9 +135,9 @@ app.delete("/rede/:id", (req, res) => {
   res.json();
 });
 
-//Gerencimento de rede
+// //Gerencimento de rede
 
-//Gerencimento de serviço
+// //Gerencimento de serviço
 
 app.post("/servico", (req, res) => {
   const servico = req.body;
@@ -166,9 +166,9 @@ app.delete("/servico/:id", (req, res) => {
   res.json();
 });
 
-//Gerencimento de serviço
+// //Gerencimento de serviço
 
-//Gerencimento de usuario
+// //Gerencimento de usuario
 
 app.post("/usuario", (req, res) => {
   const usuario = req.body;
@@ -197,7 +197,7 @@ app.delete("/usuario/:id", (req, res) => {
   res.json();
 });
 
-//Gerencimento de usuario
+// //Gerencimento de usuario
 
 app.listen(port, () => {
   console.log(`Sucesso na conexão ${port}`);
