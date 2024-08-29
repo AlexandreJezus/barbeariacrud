@@ -1,13 +1,8 @@
+const model = require("../models/barbearia_models.js");
+
 const db = [];
-let nextID = 1;
-const model = (barbearia, id_barbearia = nextID++) => {
-  if (barbearia.nome != undefined && barbearia.nome != "") {
-    return {
-      id_barbearia,
-      nome: barbearia.nome,
-    };
-  }
-};
+
+const index = () => db;
 
 const store = (body) => {
   const novo = model(body);
@@ -17,8 +12,6 @@ const store = (body) => {
   }
   return 400;
 };
-
-const index = () => db;
 
 const show = (id_barbearia) => db.find((el) => el.id_barbearia == id_barbearia);
 

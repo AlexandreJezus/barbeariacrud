@@ -1,15 +1,8 @@
+const model = require("../models/barbeiro_models.js");
+
 const db = [];
-let nextID = 1;
-const model = (barbeiro, id_barbeiro = nextID++) => {
-  if (barbeiro.nome != undefined && barbeiro.nome != "") {
-    return {
-      id_barbeiro,
-      nome: barbeiro.nome,
-      foto: barbeiro.hora_saida,
-      bio: barbeiro.hora_retorno,
-    };
-  }
-};
+
+const index = () => db;
 
 const store = (body) => {
   const novo = model(body);
@@ -19,8 +12,6 @@ const store = (body) => {
   }
   return 400;
 };
-
-const index = () => db;
 
 const show = (id_barbeiro) => db.find((el) => el.id_barbeiro == id_barbeiro);
 

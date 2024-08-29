@@ -1,15 +1,8 @@
+const model = require("../models/rede_models.js");
+
 const db = [];
-let nextID = 1;
-const model = (rede, id_rede = nextID++) => {
-  if (rede.nome != undefined && rede.nome != "") {
-    return {
-      id_rede,
-      nome: rede.nome,
-      hora_saida: rede.hora_saida,
-      hora_retorno: rede.hora_retorno,
-    };
-  }
-};
+
+const index = () => db;
 
 const store = (body) => {
   const novo = model(body);
@@ -19,8 +12,6 @@ const store = (body) => {
   }
   return 400;
 };
-
-const index = () => db;
 
 const show = (id_rede) => db.find((el) => el.id_rede == id_rede);
 

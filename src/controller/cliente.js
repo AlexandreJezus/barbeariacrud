@@ -1,51 +1,45 @@
+const model = require("../models/cliente_models.js");
+
 const db = [];
-let nextID = 1;
-const model = (cliente, id_cliente = nextID++) => {
-  if (cliente.nome != undefined && cliente.nome != "") {
-    return {
-      id_cliente,
-      nome: cliente.nome,
-      telefone: cliente.telefone,
-      email: cliente.email,
-    };
-  }
-};
+
+const index = () => db;
+
+const show = (id) => db.find((el) => el.id == id);
 
 const store = (body) => {
   const novo = model(body);
+
   if (novo) {
     db.push(novo);
     return 201;
   }
+
   return 400;
 };
 
-const index = () => db;
+const update = (body, id) => {
+  const novo = model(body, parseInt(id));
+  const indice = db.findIndex((el) => el.id == id);
 
-const show = (id_cliente) => db.find((el) => el.id_cliente == id_cliente);
-
-const update = (id_cliente, body) => {
-  const index = db.findIndex((el) => el.id_cliente == id_cliente);
-  const novo = model(body, parseInt(id_cliente));
-  if (novo && index != -1) {
-    db[index] = novo;
+  if (novo && indice != -1) {
+    db[indice] = novo;
     return 200;
   }
+
   return 400;
 };
-const destroy = (id_cliente) => {
-  const index = db.findIndex((el) => el.id_cliente == id_cliente);
-  if (index != -1) {
-    db.splice(index, 1);
-    return 200;
+
+const destroy = (id) => {
+  const indice = db.findIndex((el) => el.id == id);
+  if (indice != -1) {
+    db.splice(indice, 1);
   }
-  return 400;
 };
 
 module.exports = {
-  store,
   index,
   show,
+  store,
   update,
   destroy,
 };
