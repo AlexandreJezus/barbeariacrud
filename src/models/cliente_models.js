@@ -1,7 +1,7 @@
-let nextId = 1;
+let nextid = 1;
 
-const model = (body, id = nextId++) => {
-  const telefone = body.telefone
+const model = (cliente, id_cliente = nextid++) => {
+  const telefone = cliente.telefone
     .replaceAll("-", "")
     .replaceAll("(", "")
     .replaceAll(")", "")
@@ -16,23 +16,23 @@ const model = (body, id = nextId++) => {
   });
 
   if (
-    body.nome != undefined &&
-    body.email != undefined &&
+    cliente.nome != undefined &&
+    cliente.email != undefined &&
     telefone != undefined &&
-    body.nome != "" &&
-    body.email != "" &&
-    body.email.includes("@") &&
+    cliente.nome != "" &&
+    cliente.email != "" &&
+    cliente.email.includes("@") &&
     telefone != "" &&
     telefone.length >= 11 &&
     telefone.length <= 12 &&
     soNumeros
   ) {
     return {
-      id,
-      telefone: telefone,
-      nome: body.nome,
-      email: body.email,
-      senha: body.senha,
+      id_cliente,
+      telefone: cliente.telefone,
+      nome: cliente.nome,
+      email: cliente.email,
+      senha: cliente.senha,
     };
   }
 };

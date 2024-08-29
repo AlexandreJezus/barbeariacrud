@@ -5,8 +5,8 @@ const model = (barbeiro, id_barbeiro = nextID++) => {
     return {
       id_barbeiro,
       nome: barbeiro.nome,
-      foto: barbeiro.hora_saida,
-      bio: barbeiro.hora_retorno,
+      foto: barbeiro.foto,
+      bio: barbeiro.bio,
       barbearia_id: barbeiro.barbearia_id,
     };
   }

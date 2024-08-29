@@ -4,10 +4,10 @@ const db = [];
 
 const index = () => db;
 
-const show = (id) => db.find((el) => el.id == id);
+const show = (id_cliente) => db.find((el) => el.id_cliente == id_cliente);
 
-const store = (body) => {
-  const novo = model(body);
+const store = (cliente) => {
+  const novo = model(cliente);
 
   if (novo) {
     db.push(novo);
@@ -17,9 +17,9 @@ const store = (body) => {
   return 400;
 };
 
-const update = (body, id) => {
-  const novo = model(body, parseInt(id));
-  const indice = db.findIndex((el) => el.id == id);
+const update = (cliente, id_cliente) => {
+  const novo = model(cliente, parseInt(id_cliente));
+  const indice = db.findIndex((el) => el.id_cliente == id_cliente);
 
   if (novo && indice != -1) {
     db[indice] = novo;
@@ -29,8 +29,8 @@ const update = (body, id) => {
   return 400;
 };
 
-const destroy = (id) => {
-  const indice = db.findIndex((el) => el.id == id);
+const destroy = (id_cliente) => {
+  const indice = db.findIndex((el) => el.id_cliente == id_cliente);
   if (indice != -1) {
     db.splice(indice, 1);
   }
