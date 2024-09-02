@@ -1,11 +1,22 @@
 const express = require("express");
 const cep_endereco = require("./middlewares/cep_endereco.js");
+
+// Controller
 const usuario_controller = require("./controller/usuario.js");
 const cliente_controller = require("./controller/cliente.js");
 const servico_controller = require("./controller/servico.js");
 const rede_controller = require("./controller/rede.js");
 const barbeiro_controller = require("./controller/barbeiro.js");
 const barbearia_controller = require("./controller/barbearia.js");
+
+// Router
+const usuario_router = require("./router/usuario_router.js");
+const cliente_router = require("./router/cliente_router.js");
+const servico_router = require("./router/servico_router.js");
+const barbeiro_router = require("./router/barbeiro_router.js");
+const rede_router = require("./router/rede_router.js");
+const barbearia_router = require("./router/barbearia_router.js");
+const atendimento_router = require("./router/atendimento_router.js");
 const app = express();
 const port = 3000;
 
@@ -198,6 +209,17 @@ app.delete("/usuario/:id", (req, res) => {
 });
 
 // //Gerencimento de usuario
+
+// Rotas
+
+app.use("/usuario", usuario_router);
+app.use("/servico", servico_router);
+app.use("/rede", rede_router);
+app.use("/cliente", cliente_router);
+app.use("/barbeiro", barbeiro_router);
+app.use("/barbearia", barbearia_router);
+app.use("/atendimento", atendimento_router);
+// Rotas
 
 app.listen(port, () => {
   console.log(`Sucesso na conexão ${port}`);

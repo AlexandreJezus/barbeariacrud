@@ -5,7 +5,7 @@ const model = (rede, id_rede = nextID++) => {
     return {
       id_rede,
       nome: rede.nome,
-      usuario_id: usuario.usuario_id,
+      usuario_id: rede.usuario_id,
     };
   }
 };
